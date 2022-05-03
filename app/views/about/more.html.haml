@@ -49,6 +49,11 @@
       .box-widget
         .rich-formatting
           - unless @rules.empty?
+            %h2#Welcome= "Welcome to PeopleMaking.Games"
+            %p= "We're building a community that celebrates games and the craft of creating interactive experiences. It's a space to play together, share with each other, learn new things, build connections, and help one other grow! We take the broad view of the term \"Game Maker\". Whether you're in games or around them, fresh faced or veteran, digital or physical, this is a space for you."
+
+            %h2#Community="Building Community"
+            %p= "Our instance is invite only, to facilitate organic growth. The hope is that, by letting friends invite friends, we can maintain a positive and supportive culture with strong connections between each and every member. Please invite people responsibly, but also don't be stingy! Bring folks you care about, folks who inspire you, and new faces excited to create!"
             %h2#rules= t('about.rules')
 
             %p= t('about.rules_html')
@@ -78,11 +83,16 @@
               %p= t('about.unavailable_content_description.suspended')
               = render partial: 'domain_blocks', locals: { domain_blocks: blocks }
 
+              %h2#Attributions= "Attributions"
+              %h4= "Mutant Standard emoji"
+              %p= t('about.attribution_mse_html')
+
   .column-4
     %ul.table-of-contents
       - unless @rules.empty?
+        %li= link_to "Welcome", '#Welcome'
+        %li= link_to "Building Community", '#Community'
         %li= link_to t('about.rules'), '#rules'
-
       - @table_of_contents.each do |item|
         %li
           = link_to item.title, "##{item.anchor}"
@@ -93,4 +103,5 @@
                 %li= link_to sub_item.title, "##{sub_item.anchor}"
 
       - if display_blocks? && !@blocks.empty?
-        %li= link_to t('about.unavailable_content'), '#unavailable-content'
+        %li= link_to t('about.unavailable_content'), '#unavailable-content'        
+        %li= link_to "Attributions", '#Attributions'
