@@ -29,6 +29,7 @@ en:
     learn_more: Learn more
     logged_in_as_html: You are currently logged in as %{username}.
     logout_before_registering: You are already logged in.
+    mastodon_server_covenant_html: PeopleMaking.Games fully subscribes to and complies with the <a href='https://joinmastodon.org/covenant'>Mastodon Server Covenant</a>.
     privacy_policy: Privacy policy
     rules: Rules
     rules_html: By partipcating on PeopleMaking.Games, you agree to follow the rules below to the best of your ability.

@@ -16,6 +16,10 @@ class InstancePresenter
     Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
   end
 
+  def backup_account
+    Account.find_local("alicevie")
+  end
+
   def rules
     Rule.ordered
   end

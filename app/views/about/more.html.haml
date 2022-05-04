@@ -32,6 +32,7 @@
       %h4= t 'about.administered_by'
 
       = account_link_to(@instance_presenter.contact_account)
+      = account_link_to(@instance_presenter.backup_account)
 
       - if @instance_presenter.site_contact_email.present?
         %h4
@@ -65,6 +66,9 @@
 
           = @contents.html_safe
 
+          %h2#covenant="Mastodon Server Covenant"
+          %p= t('about.mastodon_server_covenant_html')
+
           - if display_blocks? && !@blocks.empty?
             %h2#unavailable-content= t('about.unavailable_content')
 
@@ -93,6 +97,7 @@
         %li= link_to "Welcome", '#Welcome'
         %li= link_to "Building Community", '#Community'
         %li= link_to t('about.rules'), '#rules'
+        %li= link_to "Mastodon Covenant", '#covenant'
       - @table_of_contents.each do |item|
         %li
           = link_to item.title, "##{item.anchor}"
