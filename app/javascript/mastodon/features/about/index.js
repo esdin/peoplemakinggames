@@ -135,7 +135,7 @@ class About extends React.PureComponent {
             <hr className='about__meta__divider' />
 
             <div className='about__meta__column'>
-              <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
+              <h4><FormattedMessage id='about.contact' defaultMessage='Contact Email:' /></h4>
 
               {isLoading ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.getIn(['contact', 'email'])}`}>{server.getIn(['contact', 'email'])}</a>}
             </div>
@@ -186,7 +186,7 @@ class About extends React.PureComponent {
           </Section>
 
           <Section title={intl.formatMessage(messages.covenant)}>
-            <p><FormattedMessage id='about.server_covenant' defaultMessage='This information has not been made available on this server.' /></p>
+            <p>PeopleMaking.Games fully subscribes to and complies with the <a href='https://joinmastodon.org/covenant'>Mastodon Server Covenant</a>.</p>
           </Section>
 
 
@@ -227,9 +227,10 @@ class About extends React.PureComponent {
           </Section>
 
           <Section title={intl.formatMessage(messages.attribution)}>
-            <p><FormattedMessage id='about.attribution' defaultMessage='This information has not been made available on this server.' /></p>
-          </Section>
+            <p>This instance uses <a href='https://mutant.tech'>Mutant Standard emoji</a>, which are licensed under a <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></p>
 
+            <p>BlobbyBara emoji by <a href='https://queer.garden/@moiety'>@moiety@queer.garden</a></p>
+          </Section>
 
           <LinkFooter />
 

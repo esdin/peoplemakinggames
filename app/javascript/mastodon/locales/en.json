@@ -4,7 +4,7 @@
   "about.disclaimer": "Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.",
   "about.domain_blocks.comment": "Reason",
   "about.domain_blocks.domain": "Domain",
-  "about.attribution": "This instance uses [Mutant Standard emoji](https://mutant.tech), which are licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)\n\nBlobby Bara by @moiety@queer.garden",
+  "about.attribution": "This instance uses [Mutant Standard emoji](https://mutant.tech), which are licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). \n\n\nBlobby Bara by @moiety@queer.garden",
   "about.domain_blocks.preamble": "Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.",
   "about.domain_blocks.severity": "Severity",
   "about.domain_blocks.silenced.explanation": "You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.",
