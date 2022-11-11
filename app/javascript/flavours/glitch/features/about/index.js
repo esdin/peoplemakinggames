@@ -14,8 +14,12 @@ import classNames from 'classnames';
 import Image from 'flavours/glitch/components/image';
 
 const messages = defineMessages({
-  title: { id: 'column.about', defaultMessage: 'About' },
+  title: { id: 'column.about_custom', defaultMessage: 'Welcome to PeopleMaking.Games!' },
+  community: { id:'column.community_custom', defaultMessage: 'Building Community'},
+  request: {id:'column.community_request', defaultMessage: 'Requesting An Account'},
   rules: { id: 'about.rules', defaultMessage: 'Server rules' },
+  covenant: {id: 'column.covenant', defaultMessage: 'Mastodon Server Covenant'},
+  attribution: {id: 'column.attribution', defaultMessage: 'Attributions'},
   blocks: { id: 'about.blocks', defaultMessage: 'Moderated servers' },
   silenced: { id: 'about.domain_blocks.silenced.title', defaultMessage: 'Limited' },
   silencedExplanation: { id: 'about.domain_blocks.silenced.explanation', defaultMessage: 'You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.' },
@@ -158,6 +162,14 @@ class About extends React.PureComponent {
             ))}
           </Section>
 
+          <Section title={intl.formatMessage(messages.community)}>
+            <p><FormattedMessage id='about.community' defaultMessage='This information has not been made available on this server.' /></p>
+          </Section>
+
+          <Section title={intl.formatMessage(messages.request)}>
+            <p><FormattedMessage id='about.request' defaultMessage='This information has not been made available on this server.' /></p>
+          </Section>
+
           <Section title={intl.formatMessage(messages.rules)}>
             {!isLoading && (server.get('rules').isEmpty() ? (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
@@ -170,6 +182,10 @@ class About extends React.PureComponent {
                 ))}
               </ol>
             ))}
+          </Section>
+
+          <Section title={intl.formatMessage(messages.covenant)}>
+            <p>PeopleMaking.Games fully subscribes to and complies with the <a href='https://joinmastodon.org/covenant'>Mastodon Server Covenant</a>.</p>
           </Section>
 
           <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
@@ -206,6 +222,18 @@ class About extends React.PureComponent {
             ) : (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ))}
+          </Section>
+
+          <Section title={intl.formatMessage(messages.attribution)}>
+            <p>This instance uses <a href='https://mutant.tech'>Mutant Standard emoji</a>, which are licensed under a <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></p>
+
+            <p>BlobbyBara emoji by <a href='https://queer.garden/@moiety'>@moiety@queer.garden</a></p>
+          </Section>
+
+          
+
+          <Section title="Support">
+            <p>Want to support PeopleMaking.Games? Visit our <a href='https://www.patreon.com/peoplemakinggames'>Patreon</a>! Membership is not expected but is most appreciated!</p>
           </Section>
 
           <LinkFooter />
