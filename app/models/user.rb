@@ -131,11 +131,11 @@ class User < ApplicationRecord
 
   has_many :session_activations, dependent: :destroy
 
-  delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
+  delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :favourite_modal, :delete_modal,
+           :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_media, :hide_followers_count,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :disable_swiping, :always_send_emails,
+           :disable_swiping, :always_send_emails, :default_content_type, :system_emoji_font,
            to: :settings, prefix: :setting, allow_nil: false
 
   delegate :can?, to: :role
@@ -237,7 +237,7 @@ class User < ApplicationRecord
   end
 
   def functional?
-    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial? && account.moved_to_account_id.nil?
+    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial?
   end
 
   def unconfirmed?
@@ -305,8 +305,16 @@ class User < ApplicationRecord
     settings.notification_emails['appeal']
   end
 
-  def allows_trends_review_emails?
+  def allows_trending_tags_review_emails?
     settings.notification_emails['trending_tag']
+  end
+
+  def allows_trending_links_review_emails?
+    settings.notification_emails['trending_link']
+  end
+
+  def allows_trending_statuses_review_emails?
+    settings.notification_emails['trending_status']
   end
 
   def aggregates_reblogs?

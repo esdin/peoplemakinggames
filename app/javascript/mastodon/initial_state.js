@@ -133,4 +133,7 @@ export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
 
+// Glitch-soc-specific settings
+export const maxChars = (initialState && initialState.max_toot_chars) || 1024;
+
 export default initialState;

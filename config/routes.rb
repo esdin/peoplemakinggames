@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     /blocks
     /domain_blocks
     /mutes
+    /statuses/(*any)
   ).freeze
 
   root 'home#index'
@@ -69,6 +70,7 @@ Rails.application.routes.draw do
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create], controller: :challenges
       get 'sessions/security_key_options', to: 'sessions#webauthn_options'
+      post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
     end
   end
 
@@ -178,6 +180,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :flavours, only: [:index, :show, :update], param: :flavour
+
     resource :delete, only: [:show, :destroy]
     resource :migration, only: [:show, :create]
 
@@ -224,7 +228,25 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :domain_allows, only: [:new, :create, :show, :destroy]
-    resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit]
+    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit] do
+      collection do
+        post :batch
+      end
+    end
+
+    resources :export_domain_allows, only: [:new] do
+      collection do
+        get :export, constraints: { format: :csv }
+        post :import
+      end
+    end
+
+    resources :export_domain_blocks, only: [:new] do
+      collection do
+        get :export, constraints: { format: :csv }
+        post :import
+      end
+    end
 
     resources :email_domain_blocks, only: [:index, :new, :create] do
       collection do
@@ -440,6 +462,7 @@ Rails.application.routes.draw do
       end
 
       namespace :timelines do
+        resource :direct, only: :show, controller: :direct
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
@@ -530,6 +553,7 @@ Rails.application.routes.draw do
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
+
       resource :directory, only: [:show]
 
       resources :follow_requests, only: [:index] do
@@ -539,9 +563,10 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :notifications, only: [:index, :show] do
+      resources :notifications, only: [:index, :show, :destroy] do
         collection do
           post :clear
+          delete :destroy_multiple
         end
 
         member do
@@ -682,7 +707,7 @@ Rails.application.routes.draw do
     get path, to: 'home#index'
   end
 
-  get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }
+  get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
 

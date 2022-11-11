@@ -12,7 +12,6 @@ class TagFeed < PublicFeed
   # @option [Boolean] :local
   # @option [Boolean] :remote
   # @option [Boolean] :only_media
-  # @option [String]  :locale
   def initialize(tag, account, options = {})
     @tag = tag
     super(account, options)
@@ -26,6 +25,7 @@ class TagFeed < PublicFeed
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
     scope = public_scope
 
+    scope.merge!(without_local_only_scope) unless local_account?
     scope.merge!(tagged_with_any_scope)
     scope.merge!(tagged_with_all_scope)
     scope.merge!(tagged_with_none_scope)
