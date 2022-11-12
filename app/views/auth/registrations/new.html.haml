@@ -6,7 +6,16 @@
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
   %h1.title= t('auth.sign_up.title', domain: site_hostname)
-  %p.lead= t('auth.sign_up.preamble')
+  %p.lead="When you create a Mastodon account, you'll be able to follow almost anybody else in the federation, regardless of where their own account is hosted. We're glad you've chosen PMG as your new home base!"
+
+  %h1.title="Signup Requirements!"
+  %p.lead="All applications are vetted by hand. You must provide all three of the following in the field below. Incomplete applications will be discarded:"
+  %p.lead="• Your name (or identifiable handle, studio name, etc)"
+  %p.lead="• Your relationship with games (e.g. narrative designer, artist, producer, Twitch streamer/influencer, journalist, student or industry hopeful, games appreciator, et al)"
+  %p.lead="• A link to your existing online presence (official website, Twitter, Instagram, DeviantArt, etc)"
+
+  %p.lead="Thanks, and we look forward to welcoming you!"
+
 
   = render 'shared/error_messages', object: resource
 
@@ -14,6 +23,11 @@
     .fields-group.invited-by
       %p.hint= t('invites.invited_by')
       = render 'application/card', account: @invite.user.account
+
+  - if approved_registrations? && !@invite.present?
+    .fields-group
+      = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
+        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
 
   .fields-group
     = f.simple_fields_for :account do |ff|
@@ -25,12 +39,6 @@
     = f.input :confirm_password, as: :string, placeholder: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), :autocomplete => 'off' }, hint: false
     = f.input :website, as: :url, wrapper: :with_label, label: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: 'Website'), :autocomplete => 'off' }
 
-  - if approved_registrations? && !@invite.present?
-    .fields-group
-      = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
-        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
-
-
   = hidden_field_tag :accept, params[:accept]
   = f.input :invite_code, as: :hidden
 
@@ -39,5 +47,13 @@
 
   .actions
     = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
+
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
+  %p.lead=" "
+  %p.lead="Not sure if PeopleMaking.Games is the right place for you? Here's a few (extremely non-comprehensive!) other game-maker and games focused instances:"
+  %p.lead="gamedev.lgbt - An LGBT first gamedev instance with a solid focus on Godot!"
+  %p.lead="elekk.xyz -  An instance for gamers, by gamers, of every and all platform and format!"
+  %p.lead="mastodon.gamedev.place - An open membership instance very tightly focused on game creation"
+
 
 .form-footer= render 'auth/shared/links'

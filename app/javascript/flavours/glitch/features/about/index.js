@@ -130,6 +130,7 @@ class About extends React.PureComponent {
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
               <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+              <Account id='@AliceVie' size={36} />
             </div>
 
             <hr className='about__meta__divider' />

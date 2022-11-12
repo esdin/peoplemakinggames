@@ -99,7 +99,7 @@ en:
       imports:
         data: CSV file exported from another Mastodon server
       invite_request:
-        text: Please include who you are, why you want to join, and, if possible, point us to an existing online presence! This will make it easier for us to review and get you approved quickly! (1024 characters max)
+        text: (1024 Characters Max)
       ip_block:
         comment: Optional. Remember why you added this rule.
         expires_in: IP addresses are a finite resource, they are sometimes shared and often change hands. For this reason, indefinite IP blocks are not recommended.
@@ -259,7 +259,7 @@ en:
       invite:
         comment: Comment
       invite_request:
-        text: Why do you want to join?
+        text: Vetting Answers
       ip_block:
         comment: Comment
         ip: IP
