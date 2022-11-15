@@ -130,7 +130,6 @@ class About extends React.PureComponent {
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
               <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
-              <Account id='@AliceVie' size={36} />
             </div>
 
             <hr className='about__meta__divider' />
@@ -183,6 +182,7 @@ class About extends React.PureComponent {
                 ))}
               </ol>
             ))}
+            <p>You may also view our full legalese <a href='https://app.termly.io/document/terms-of-use-for-website/b5849b55-6b75-4ae4-b995-4ec1a6a1debb'>Terms of Service</a>, but the TLDR is - we are not responsible for any content posted on this site or on the rest of the Fediverse (though we'll do our best to get anything misattributed, infringing, sensitive, or harmful taken down as fast as possible!)</p>
           </Section>
 
           <Section title={intl.formatMessage(messages.covenant)}>
@@ -227,8 +227,8 @@ class About extends React.PureComponent {
 
           <Section title={intl.formatMessage(messages.attribution)}>
             <p>This instance uses <a href='https://mutant.tech'>Mutant Standard emoji</a>, which are licensed under a <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></p>
-
             <p>BlobbyBara emoji by <a href='https://queer.garden/@moiety'>@moiety@queer.garden</a></p>
+            <p>A few capy emoji by <a href='https://bananachips.club/@pollomostro'>@pollomostro@bananachips.club</a></p>
           </Section>
 
           

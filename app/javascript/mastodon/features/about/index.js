@@ -232,6 +232,12 @@ class About extends React.PureComponent {
             <p>BlobbyBara emoji by <a href='https://queer.garden/@moiety'>@moiety@queer.garden</a></p>
           </Section>
 
+          <div className='about__meta'>
+            <p>PeopleMaking.Games wouldn't be possible without support from our members! Here's a special shoutout to the folks in our <b>Sponsor</b> tier: I promise I'll make this look better when I get arbitrary profile embeds working 😅"</p>"
+            <p>"@Jerrith | Daniel Nethersole (hey, let me know your handle!)"</p>
+          </div>
+
+
           <LinkFooter />
 
           <div className='about__footer'>

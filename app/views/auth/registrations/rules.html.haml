@@ -4,7 +4,12 @@
 - content_for :header_tags do
   = render partial: 'shared/og', locals: { description: description_for_sign_up }
 
+
 .simple_form
+  %h1.title= "New to Mastodon?"
+  %p.lead= "We strongly recommend taking a peek at our Welcome Guide to make sure you have an easy time using Mastodon, finding folks, and getting involved with the community!"
+  .stacked-actions
+    = link_to "Welcome Guide", "https://tinyurl.com/welcome-to-mastodon", target: :_blank, class: 'button'
   %h1.title= t('auth.rules.title')
   %p.lead= t('auth.rules.preamble', domain: site_hostname)
 

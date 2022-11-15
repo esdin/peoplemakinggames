@@ -16,6 +16,10 @@
 
   %p.lead="Thanks, and we look forward to welcoming you!"
 
+  %h1.title="      ❗Notice❗"
+  %p.lead="Approvals are currently staggered so we can make sure to scale our hardware and community responsibly. We'll try to fast track folks who have well written applications and are eager to get started quickly! Thanks!"
+  %p.hint="Have a friends or colleagues on the server? Invitations are approved instantly, so be sure to reach out to them!"
+
 
   = render 'shared/error_messages', object: resource
 
@@ -28,6 +32,7 @@
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
         = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
+
 
   .fields-group
     = f.simple_fields_for :account do |ff|
@@ -51,9 +56,16 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
   %p.lead=" "
   %p.lead="Not sure if PeopleMaking.Games is the right place for you? Here's a few (extremely non-comprehensive!) other game-maker and games focused instances:"
-  %p.lead="gamedev.lgbt - An LGBT first gamedev instance with a solid focus on Godot!"
-  %p.lead="elekk.xyz -  An instance for gamers, by gamers, of every and all platform and format!"
-  %p.lead="mastodon.gamedev.place - An open membership instance very tightly focused on game creation"
+  %p.hint="PeopleMaking.Games cannot vouch for the current state of moderation for any servers listed below. Please let us know if any suggestions should be reviewed."
+  .stacked-actions
+    = link_to "gamedev.lgbt", "https://gamedev.lgbt", target: :_blank, class: 'button'
+  %p.lead="An LGBT focused gamedev instance with a strong focus on Godot!"
+  .stacked-actions
+    = link_to "elekk.xyz", "https://elekk.xyz", target: :_blank, class: 'button'
+  %p.lead="An instance for gamers, by gamers, of every and all platform and format!"
+  .stacked-actions
+    = link_to "mastodon.gamedev.place", "https://mastodon.gamedev.place", target: :_blank, class: 'button'
+  %p.lead="A very large, open membership instance prioritizing on-topic discussion of game development and technology"
 
 
 .form-footer= render 'auth/shared/links'
