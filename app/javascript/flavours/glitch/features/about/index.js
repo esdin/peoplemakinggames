@@ -130,6 +130,7 @@ class About extends React.PureComponent {
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
               <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
+              <Account id={'108204235709976051'} size={36} />
             </div>
 
             <hr className='about__meta__divider' />
@@ -229,6 +230,13 @@ class About extends React.PureComponent {
           <Section title="Support">
             <p>Want to support PeopleMaking.Games? Visit our <a href='https://www.patreon.com/peoplemakinggames'>Patreon</a>! Membership is not expected but is most appreciated!</p>
           </Section>
+
+          <div className='about__meta'>
+            <h4>PeopleMaking.Games is made possible by our Patreon Supporters</h4>
+
+            <p>AR Schleicher, Daniel Nethersole, Del's Doodles</p>
+            <p>Rémi Töötätä, Rose Lafeuille</p>
+          </div>
 
           <LinkFooter />
 

@@ -79,11 +79,15 @@ class LinkFooter extends React.PureComponent {
           {' '}
           <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
           {' · '}
-          <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
+          <a href='https://tinyurl.com/welcome-to-mastodon' target='_blank'>Welcome Guide</a>
+          {' · '}
+          <a href='https://docs.google.com/document/d/1gln7Lg92Vz3TbIjz6qZkpdPOxDAe63jof5snpR4xAa0/edit#heading=h.j3jshab5bb16' target='_blank'>Mobile Applications</a>
           {' · '}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {' · '}
-          <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
+          <a href='https://tinyurl.com/mastodon-gamedev-list' target='_blank'>Gamedev & Gaming Mastodon Webring</a>
+          {' · '}
+          <a href='https://glitch-soc.github.io/docs/' target='_blank'>Learn about Mastodon Glitch Edition</a>
           {' · '}
           v{version}
         </p>

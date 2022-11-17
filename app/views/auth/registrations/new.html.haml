@@ -56,16 +56,9 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
   %p.lead=" "
   %p.lead="Not sure if PeopleMaking.Games is the right place for you? Here's a few (extremely non-comprehensive!) other game-maker and games focused instances:"
-  %p.hint="PeopleMaking.Games cannot vouch for the current state of moderation for any servers listed below. Please let us know if any suggestions should be reviewed."
+  %p.hint="PeopleMaking.Games cannot vouch for the current state of moderation for any servers listed. Please let us know if any suggestions should be reviewed."
   .stacked-actions
-    = link_to "gamedev.lgbt", "https://gamedev.lgbt", target: :_blank, class: 'button'
-  %p.lead="An LGBT focused gamedev instance with a strong focus on Godot!"
-  .stacked-actions
-    = link_to "elekk.xyz", "https://elekk.xyz", target: :_blank, class: 'button'
-  %p.lead="An instance for gamers, by gamers, of every and all platform and format!"
-  .stacked-actions
-    = link_to "mastodon.gamedev.place", "https://mastodon.gamedev.place", target: :_blank, class: 'button'
-  %p.lead="A very large, open membership instance prioritizing on-topic discussion of game development and technology"
+    = link_to "Gamedev & Gameing Mastodon Webring", "https://tinyurl.com/mastodon-gamedev-list", target: :_blank, class: 'button'
 
 
 .form-footer= render 'auth/shared/links'
