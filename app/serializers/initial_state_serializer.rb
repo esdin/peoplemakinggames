@@ -24,13 +24,12 @@ class InitialStateSerializer < ActiveModel::Serializer
     }
   end
 
-  # rubocop:disable Metrics/AbcSize
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
-      domain: instance_presenter.domain,
+      domain: Addressable::IDNA.to_unicode(instance_presenter.domain),
       title: instance_presenter.title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
@@ -45,7 +44,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
-      translation_enabled: TranslationService.configured?,
+      trends_as_landing_page: Setting.trends_as_landing_page,
+      status_page_url: Setting.status_page_url,
     }
 
     if object.current_account
@@ -77,13 +77,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
     store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
 
-    if Rails.configuration.x.single_user_mode
-      store[:owner] = object.owner&.id&.to_s
-    end
+    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
 
     store
   end
-  # rubocop:enable Metrics/AbcSize
 
   def compose
     store = {}

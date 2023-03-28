@@ -141,11 +141,7 @@ lt:
         create: Sukurti bloką
         hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje, tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
         severity:
-          desc_html: |-
-            <strong>1Tyla</strong>2 padarys paskyros įkelimus nematomus visiems, kurie jų neseka.
-            <strong>3Draudimas</strong>4 panaikins visus paskyros įkėlimus ir profilio informaciją.Naudok<strong>5Nieko</strong>6 jeigu tiesiog norite atmesti medijos failus.
           noop: Nieko
-          silence: Tyla
           suspend: Draudimas
         title: Naujos domeno blokas
       reject_media: Atmesti medijos failai
@@ -335,8 +331,6 @@ lt:
     storage: Medijos sandėlis
   featured_tags:
     add_new: Pridėti naują
-    errors:
-      limit: Jūs jau naudojate maksimalų galimą saitažodžių(#) kiekį
   filters:
     contexts:
       home: Namų laiko juosta
@@ -389,9 +383,6 @@ lt:
       expires_at: Pasibaigia
       uses: Naudojimai
     title: Pakviesti žmones
-  lists:
-    errors:
-      limit: Jūs pasieketė maksimalų sąrašų skaičių
   media_attachments:
     validations:
       images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
@@ -428,8 +419,6 @@ lt:
     next: Kitas
     older: Senesnis
     prev: Ankstesnis
-  preferences:
-    other: Kita
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
   scheduled_statuses:
@@ -444,8 +433,6 @@ lt:
     current_session: Dabartinė sesija
     description: "%{browser} ant %{platform}"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
-    platforms:
-      other: nežinoma platforma
     revoke: Atšaukti
     revoke_success: Sesija sėkmingai atšaukta
     title: Sesijos

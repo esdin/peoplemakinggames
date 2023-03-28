@@ -26,11 +26,13 @@
   img {
     margin-top: 2em;
     margin-bottom: 2em;
+    max-width: 100%;
   }
 
   video {
     margin-top: 2em;
     margin-bottom: 2em;
+    max-width: 100%;
   }
 
   figure {
@@ -85,14 +87,14 @@
     counter-increment: list-counter;
 
     &::before {
-      content: counter(list-counter) ".";
+      content: counter(list-counter) '.';
       position: absolute;
       left: 0;
     }
   }
 
   ul > li::before {
-    content: "";
+    content: '';
     position: absolute;
     background-color: $darker-text-color;
     border-radius: 50%;

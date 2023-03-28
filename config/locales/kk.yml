@@ -178,9 +178,7 @@ kk:
         create: Блок құру
         hint: Домендік блок дерекқорда тіркелгі жазбаларын құруға кедергі жасамайды, бірақ сол есептік жазбаларда ретроактивті және автоматты түрде нақты модерация әдістерін қолданады.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media filеs."
           noop: Ештеңе
-          silence: Үнсіз
           suspend: Тоқтатылған
         title: Жаңа домен блокы
       private_comment: Құпия пікір
@@ -455,8 +453,6 @@ kk:
     storage: Медиа жинақ
   featured_tags:
     add_new: Жаңасын қосу
-    errors:
-      limit: Хэштег лимитинен асып кеттіңіз
     hint_html: "<strong> Ерекшеліктері бар хэштегтер дегеніміз не? </strong> Олар жалпыға қол жетімді профильде көрсетіледі және адамдарға сіздің жалпы хабарламаларыңызды сол хэштегтердің астына қарауға мүмкіндік береді. Олар шығармашылық жұмыстарды немесе ұзақ мерзімді жобаларды бақылаудың тамаша құралы."
   filters:
     contexts:
@@ -474,8 +470,6 @@ kk:
       title: Фильтрлер
     new:
       title: Жаңа фильтр қосу
-  footer:
-    trending_now: Бүгінгі трендтер
   generic:
     all: Барлығы
     changes_saved_msg: Өзгерістер сәтті сақталды!
@@ -485,8 +479,6 @@ kk:
     validation_errors:
       one: Бір нәрсе дұрыс емес! Төмендегі қатені қараңыз
       other: Бір нәрсе дұрыс емес! Төмендегі %{count} қатені қараңыз
-  html_validator:
-    invalid_markup: 'жарамсыз HTML код: %{error}'
   imports:
     modes:
       merge: Біріктіру
@@ -523,9 +515,6 @@ kk:
       expires_at: Аяқталу мерзімі
       uses: Қолданыс
     title: Адам шақыру
-  lists:
-    errors:
-      limit: Сіз тізімдердің максимум мөлшеріне жеттіңіз
   media_attachments:
     validations:
       images_and_video: Жазбаға видео қоса алмайсыз, тек сурет қосуға болады
@@ -655,7 +644,6 @@ kk:
       ios: iОS
       linux: Lіnux
       mac: Mаc
-      other: белгісіз платформа
       windows: Windоws
       windows_mobile: Windows Mоbile
       windows_phone: Windоws Phone

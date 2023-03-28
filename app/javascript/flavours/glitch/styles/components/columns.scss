@@ -65,6 +65,7 @@ $ui-header-height: 55px;
   z-index: 2;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -81,9 +82,14 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 0 10px;
+    overflow: hidden;
 
     .button {
       flex: 0 0 auto;
+    }
+
+    .button-tertiary {
+      flex-shrink: 1;
     }
   }
 }
@@ -280,7 +286,7 @@ $ui-header-height: 55px;
 
     &::before {
       display: block;
-      content: "";
+      content: '';
       position: absolute;
       bottom: -13px;
       left: 0;
@@ -290,7 +296,11 @@ $ui-header-height: 55px;
       pointer-events: none;
       height: 28px;
       z-index: 1;
-      background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+      background: radial-gradient(
+        ellipse,
+        rgba($ui-highlight-color, 0.23) 0%,
+        rgba($ui-highlight-color, 0) 60%
+      );
     }
   }
 
@@ -418,6 +428,7 @@ $ui-header-height: 55px;
 
   button {
     @extend .column-header__button;
+
     background: transparent;
     text-align: center;
     padding: 10px 5px;
@@ -429,10 +440,10 @@ $ui-header-height: 55px;
   }
 }
 
-
 .layout-single-column .column-header__notif-cleaning-buttons {
   @media screen and (min-width: $no-gap-breakpoint) {
-    b, i {
+    b,
+    i {
       margin-right: 5px;
     }
 
@@ -481,6 +492,7 @@ $ui-header-height: 55px;
   // notif cleaning drawer
   &.ncd {
     transition: none;
+
     &.collapsed {
       max-height: 0;
       opacity: 0.7;
@@ -558,6 +570,7 @@ $ui-header-height: 55px;
   border-radius: 4px;
   margin-bottom: 10px;
   align-items: stretch;
+  gap: 2px;
 }
 
 .pillbar-button {
@@ -565,12 +578,11 @@ $ui-header-height: 55px;
   color: #fafafa;
   padding: 2px;
   margin: 0;
-  margin-left: 2px;
   font-size: inherit;
   flex: auto;
   background-color: $ui-base-color;
-  transition-property: background-color, box-shadow;
   transition: all 0.2s ease;
+  transition-property: background-color, box-shadow;
 
   &[disabled] {
     cursor: not-allowed;
@@ -578,42 +590,19 @@ $ui-header-height: 55px;
   }
 
   &:not([disabled]) {
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: darken($ui-base-color, 10%);
     }
 
-    &:focus {
-      background-color: darken($ui-base-color, 15%);
-    }
-
-    &:active {
-      background-color: darken($ui-base-color, 20%);
-    }
-
     &.active {
-      background-color: $ui-highlight-color;
-      box-shadow: inset 0 5px darken($ui-highlight-color, 20%);
+      background-color: darken($ui-highlight-color, 2%);
 
-      &:hover {
-        background-color: lighten($ui-highlight-color, 10%);
-        box-shadow: inset 0 5px darken($ui-highlight-color, 10%);
-      }
-
+      &:hover,
       &:focus {
-        background-color: lighten($ui-highlight-color, 15%);
-        box-shadow: inset 0 5px darken($ui-highlight-color, 5%);
-      }
-
-      &:active {
-        background-color: lighten($ui-highlight-color, 20%);
-        box-shadow: inset 0 5px $ui-highlight-color;
+        background-color: $ui-highlight-color;
       }
     }
-  }
-
-  /* TODO: check RTL? */
-  &:first-child {
-    margin-left: 0;
   }
 }
 
@@ -639,7 +628,8 @@ $ui-header-height: 55px;
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -783,7 +773,7 @@ $ui-header-height: 55px;
 
   .column-select {
     &__control {
-      @include search-input();
+      @include search-input;
 
       &::placeholder {
         color: lighten($darker-text-color, 4%);
@@ -857,7 +847,8 @@ $ui-header-height: 55px;
     }
 
     &__menu {
-      @include search-popout();
+      @include search-popout;
+
       padding: 0;
       background: $ui-secondary-color;
     }
@@ -933,7 +924,7 @@ $ui-header-height: 55px;
 
   p {
     font-size: 16px;
-   line-height: 24px;
+    line-height: 24px;
     font-weight: 400;
     color: $darker-text-color;
   }
