@@ -8,17 +8,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { fetchReblogs } from 'flavours/glitch/actions/interactions';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { Icon } from 'flavours/glitch/components/icon';
-import { LoadingIndicator } from 'flavours/glitch/components/loading_indicator';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
-import AccountContainer from 'flavours/glitch/containers/account_container';
-import Column from 'flavours/glitch/features/ui/components/column';
+import { debounce } from 'lodash';
+
+import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import { Icon }  from 'flavours/glitch/components/icon';
 
 
-
-
+import { fetchReblogs, expandReblogs } from '../../actions/interactions';
+import ColumnHeader from '../../components/column_header';
+import { LoadingIndicator } from '../../components/loading_indicator';
+import ScrollableList from '../../components/scrollable_list';
+import AccountContainer from '../../containers/account_container';
+import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.reblogged_by', defaultMessage: 'Boosted by' },
@@ -26,7 +28,9 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId]),
+  accountIds: state.getIn(['user_lists', 'reblogged_by', props.params.statusId, 'items']),
+  hasMore: !!state.getIn(['user_lists', 'reblogged_by', props.params.statusId, 'next']),
+  isLoading: state.getIn(['user_lists', 'reblogged_by', props.params.statusId, 'isLoading'], true),
 });
 
 class Reblogs extends ImmutablePureComponent {
@@ -35,6 +39,8 @@ class Reblogs extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -42,12 +48,6 @@ class Reblogs extends ImmutablePureComponent {
   UNSAFE_componentWillMount () {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReblogs(this.props.params.statusId));
-    }
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchReblogs(nextProps.params.statusId));
     }
   }
 
@@ -63,8 +63,12 @@ class Reblogs extends ImmutablePureComponent {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
   };
 
+  handleLoadMore = debounce(() => {
+    this.props.dispatch(expandReblogs(this.props.params.statusId));
+  }, 300, { leading: true });
+
   render () {
-    const { intl, accountIds, multiColumn } = this.props;
+    const { intl, accountIds, hasMore, isLoading, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -80,17 +84,21 @@ class Reblogs extends ImmutablePureComponent {
       <Column ref={this.setRef}>
         <ColumnHeader
           icon='retweet'
+          iconComponent={RepeatIcon}
           title={intl.formatMessage(messages.heading)}
           onClick={this.handleHeaderClick}
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={RefreshIcon} /></button>
           )}
         />
 
         <ScrollableList
           scrollKey='reblogs'
+          onLoadMore={this.handleLoadMore}
+          hasMore={hasMore}
+          isLoading={isLoading}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

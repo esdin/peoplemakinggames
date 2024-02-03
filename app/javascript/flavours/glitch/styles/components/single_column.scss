@@ -43,7 +43,6 @@
 
   .compose-form {
     flex: 1;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     min-height: 310px;
@@ -94,14 +93,6 @@
   }
 }
 
-@media screen and (width >= 600px) {
-  .tabs-bar__link {
-    span {
-      display: inline;
-    }
-  }
-}
-
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
@@ -120,6 +111,7 @@
 
   .filter-form {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .autosuggest-textarea__textarea {
@@ -220,20 +212,12 @@
 }
 
 @media screen and (min-width: $no-gap-breakpoint) {
-  .tabs-bar {
-    width: 100%;
-  }
-
   .react-swipeable-view-container .columns-area--mobile {
     height: calc(100% - 10px) !important;
   }
 
   .getting-started__wrapper {
     margin-bottom: 10px;
-  }
-
-  .tabs-bar__link.optional {
-    display: none;
   }
 
   .search-page .search {
@@ -272,6 +256,7 @@
 
     .navigation-panel__sign-in-banner,
     .navigation-panel__logo,
+    .navigation-panel__banner,
     .getting-started__trends {
       display: none;
     }

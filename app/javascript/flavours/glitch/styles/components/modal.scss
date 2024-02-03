@@ -36,6 +36,7 @@
 
 .modal-root__modal {
   pointer-events: auto;
+  user-select: text;
   display: flex;
 }
 
@@ -463,19 +464,6 @@
   background-color: inherit;
 }
 
-.actions-modal {
-  .status {
-    background: $white;
-    border-bottom-color: $ui-secondary-color;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  .dropdown-menu__separator {
-    border-bottom-color: $ui-secondary-color;
-  }
-}
-
 .boost-modal__container {
   overflow-x: scroll;
   padding: 10px;
@@ -502,6 +490,10 @@
     text-align: end;
     color: $lighter-text-color;
     padding-inline-end: 10px;
+  }
+
+  .icon {
+    vertical-align: middle;
   }
 
   .button {
@@ -709,24 +701,28 @@
   &__toggle {
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
+    gap: 8px;
 
     & > span {
-      font-size: 17px;
+      display: block;
+      font-size: 14px;
       font-weight: 500;
-      margin-inline-start: 10px;
+      line-height: 20px;
     }
   }
 
   .button.button-secondary {
-    border-color: $ui-button-secondary-border-color;
-    color: $ui-button-secondary-color;
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      border-color: $ui-button-secondary-focus-background-color;
-      color: $ui-button-secondary-focus-color;
+      background: transparent;
+      border-color: $ui-button-background-color;
+      color: $ui-button-background-color;
     }
   }
 
@@ -891,11 +887,6 @@
 }
 
 .actions-modal {
-  .status {
-    overflow-y: auto;
-    max-height: 300px;
-  }
-
   strong {
     display: block;
     font-weight: 500;
@@ -1305,13 +1296,13 @@ img.modal-warning {
 .interaction-modal {
   max-width: 90vw;
   width: 600px;
-  background: $ui-base-color;
+  background: var(--modal-background-color);
+  border: 1px solid var(--modal-border-color);
   border-radius: 8px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: visible;
   position: relative;
   display: block;
-  padding: 20px;
+  padding: 40px;
 
   h3 {
     font-size: 22px;
@@ -1320,34 +1311,104 @@ img.modal-warning {
     text-align: center;
   }
 
+  p {
+    font-size: 17px;
+    line-height: 22px;
+    color: $darker-text-color;
+
+    strong {
+      color: $primary-text-color;
+      font-weight: 700;
+    }
+  }
+
+  p.hint {
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+
   &__icon {
     color: $highlight-text-color;
     margin: 0 5px;
   }
 
   &__lead {
-    padding: 20px;
-    text-align: center;
+    margin-bottom: 20px;
 
     h3 {
       margin-bottom: 15px;
     }
+  }
 
-    p {
-      font-size: 17px;
-      line-height: 22px;
-      color: $darker-text-color;
+  &__login {
+    position: relative;
+    margin-bottom: 20px;
+
+    &__input {
+      @include search-input;
+
+      border: 1px solid lighten($ui-base-color, 8%);
+      padding: 4px 6px;
+      color: $primary-text-color;
+      font-size: 16px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+
+      input {
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        border: 0;
+        padding: 15px - 4px 15px - 6px;
+        flex: 1 1 auto;
+
+        &::placeholder {
+          color: lighten($darker-text-color, 4%);
+        }
+
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      .button {
+        flex: 0 0 auto;
+      }
+    }
+
+    .search__popout {
+      margin-top: -1px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 1px solid lighten($ui-base-color, 8%);
+    }
+
+    &.focused &__input {
+      border-color: $highlight-text-color;
+      background: lighten($ui-base-color, 4%);
+    }
+
+    &.invalid &__input {
+      border-color: $error-red;
+    }
+
+    &.expanded .search__popout {
+      display: block;
+    }
+
+    &.expanded &__input {
+      border-radius: 4px 4px 0 0;
     }
   }
 
   &__choices {
     display: flex;
+    gap: 40px;
 
     &__choice {
-      flex: 0 0 auto;
-      width: 50%;
+      flex: 1;
       box-sizing: border-box;
-      padding: 20px;
 
       h3 {
         margin-bottom: 20px;
@@ -1356,6 +1417,7 @@ img.modal-warning {
       p {
         color: $darker-text-color;
         margin-bottom: 20px;
+        font-size: 15px;
       }
 
       .button {
@@ -1370,13 +1432,17 @@ img.modal-warning {
 
   @media screen and (max-width: $no-gap-breakpoint - 1px) {
     &__choices {
-      display: block;
+      flex-direction: column;
 
       &__choice {
-        width: auto;
-        margin-bottom: 20px;
+        margin-top: 40px;
       }
     }
+  }
+
+  .link-button {
+    font-size: inherit;
+    display: inline;
   }
 }
 
