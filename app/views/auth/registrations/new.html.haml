@@ -54,8 +54,6 @@
               wrapper: :with_label
 
   - if approved_registrations? && @invite.blank?
-    %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)
-
     %h2.title="Signup Requirements"
     %p.lead="All applications are vetted by hand. Please provide all three of the following in the field below. Incomplete applications will be discarded:"
     %p.hint="• Your name (or identifiable handle, studio name, etc)"
@@ -84,11 +82,10 @@
   .actions
     = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: false }) do |f|
   %p.lead=" "
   %p.lead="Not sure if PeopleMaking.Games is the right place for you? Here's a few (extremely non-comprehensive!) other game-maker and games focused instances:"
   %p.hint="PeopleMaking.Games cannot vouch for the current state of moderation for any servers listed. Please let us know if any suggestions should be reviewed."
   .stacked-actions
-    = link_to "Gamedev & Gameing Mastodon Webring", "https://tinyurl.com/mastodon-gamedev-list", target: :_blank, class: 'button'
+    = link_to "Gamedev & Gaming Mastodon Webring", "https://tinyurl.com/mastodon-gamedev-list", target: :_blank, class: 'button'
 
 .form-footer= render 'auth/shared/links'
